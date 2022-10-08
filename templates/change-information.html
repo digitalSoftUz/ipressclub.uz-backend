@@ -1,0 +1,83 @@
+﻿{% extends "base.html" %}
+{% block content %}
+			<main class="content">
+				<div class="container-fluid p-0">
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Informatsiyani O'zgartirish</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">telefon nomer</label>
+                                                <input type="text" class="form-control" name="phone" value="{{ info.phone }}" placeholder="telefon nomer" required>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">email</label>
+                                                <input type="email" class="form-control" value="{{ info.email }}" name="email" placeholder="email" required>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">logo</label>
+                                                <input type="file" class="form-control-file"  name="logo">
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">instagram link</label>
+                                               <input type="text" class="form-control" value="{{ info.instagram_link }}" name="instagram_link" placeholder="instagram_link" required>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">telegram link</label>
+                                               <input type="text" class="form-control" value="{{ info.telegram_link }}" name="telegram_link" placeholder="telegram_link" required>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">facebook link</label>
+                                               <input type="text" class="form-control" value="{{ info.fb_link }}" name="fb_link" placeholder="fb_link" required>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">youtube link</label>
+                                               <input type="text" class="form-control" value="{{ info.youtube_link }}" name="youtube_link" placeholder="youtube_link" required>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">manzil</label>
+                                               <input type="text" class="form-control" value="{{ info.address }}" name="address" placeholder="address" required>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">haritada joylashuvi</label>
+                                               <input type="text" class="form-control" value="{{ info.map }}" name="map" placeholder="map" required>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">Krill malumot</label>
+                                                <textarea name="info" id="" cols="30" class="form-control" rows="10">{{ info.info }}</textarea>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">Lotincha malumot</label>
+                                                <textarea name="info_uz" id="" cols="30" class="form-control" rows="10">{{ info.info_uz }}</textarea>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">ruscha malumot</label>
+                                                <textarea name="info_ru" id="" cols="30" class="form-control" rows="10">{{ info.info_ru }}</textarea>
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pb-1">
+                                                <label for="">inglizcha malumot</label>
+                                                <textarea name="info_en" id="" cols="30" class="form-control" rows="10">{{ info.info_en }}</textarea>
+                                            </div>
+                                            <div class="col-lg-5">
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pt-3">
+                                                <button class="btn btn-primary">saqlash</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</main>
+{% endblock content %}
+{% block script %}
+{% endblock script %}

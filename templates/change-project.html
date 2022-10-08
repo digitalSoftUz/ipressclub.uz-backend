@@ -1,0 +1,182 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+			<main class="content">
+				<div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Loyiha O'zgartirish</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{% url 'change-project' project.id %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Kategoriyasi</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <select name="category" class="form-control" required>
+                                                    <option value="{{ project.category.id }}" selected>{{ project.category.name }}</option>
+                                                    {% for i in category %}
+                                                        {% if i.id == project.category.id %}
+                                                        {% else %}
+                                                        <option value="{{ i.id }}">{{ i.name }}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Krill nomi</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="name" id="" cols="40" rows="2" class="form-control" required>{{ project.name }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Lotincha nomi</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="name_uz" id="" cols="40" rows="2" class="form-control" required>{{ project.name_uz }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Ruscha nomi</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="name_ru" id="" cols="40" rows="2" class="form-control" required>{{ project.name_ru }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Inglizcha nomi</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="name_en" id="" cols="40" rows="2" class="form-control" required>{{ project.name_en }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Krill kichkina text</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="mini_text" id="" cols="40" rows="2" class="form-control" required>{{ project.mini_text }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Lotincha kichkina text</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="mini_text_uz" id="" cols="40" rows="2" class="form-control" required>{{ project.mini_text_uz }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Kichkina text ruscha</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="mini_text_ru" id="" cols="40" rows="2" class="form-control" required>{{ project.mini_text_ru }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Kichkina text inglizcha</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="mini_text_en" id="" cols="40" rows="2" class="form-control" required>{{ project.mini_text_en }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Krill text</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="text" id="" cols="40" rows="2" class="form-control" required>{{ project.text }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Lotincha text</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="text_uz" id="" cols="40" rows="2" class="form-control" required>{{ project.text_uz }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text ruscha</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="text_ru" id="" cols="40" rows="2" class="form-control" required>{{ project.text_ru }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text inglizcha</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12">
+                                                <textarea name="text_en" id="" cols="40" rows="2" class="form-control" required>{{ project.text_en }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Sana</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <input type="date" name="date" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">1 - Rasm</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <input type="file" name="img1" class="form-control-file">
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">2 - Rasm</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <input type="file" name="img2" class="form-control-file">
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Video yuklash</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <input type="file" name="video" class="form-control-file">
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Videoni linkini yuklash</label>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <input type="text" name="video_url" class="form-control" value="{{ project.video_url }}">
+                                            </div>
+                                        </div>
+                                        <div class="row py-2">
+                                            <div class="col-lg-3 col-md-12 h-100 d-flex flex-column justify-content-between">
+                                                <label style="color: transparent" for="" class=""> Saqlash </label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-12 h-100 d-flex flex-column justify-content-between">
+                                                <button type="submit" class="btn btn-primary w-50">Saqlash</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</main>
+{% endblock %}

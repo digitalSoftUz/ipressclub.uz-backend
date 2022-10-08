@@ -1,0 +1,136 @@
+﻿{% extends "base.html" %}
+{% block content %}
+			<main class="content">
+				<div class="container-fluid p-0">
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Ma'lumot qoshish</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                                <input type="number" class="form-control" name="phone" placeholder="telefon nomer" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="email" class="form-control" name="email" placeholder="email" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="file" class="form-control-file" name="logo" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="instagram_link" placeholder="instagram link" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="telegram_link" placeholder="telegram link" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="fb_link" placeholder="facebook link" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="youtube_link" placeholder="youtube link" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="address" placeholder="manzil" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="map" placeholder="haritada joylashuvi" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="info" placeholder="krill malumot" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="info_uz" placeholder="lotincha malumot" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="info_ru" placeholder="ruscha malumot" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 pb-1">
+                                               <input type="text" class="form-control" name="info_en" placeholder="inglizcha malumot" required>
+                                            </div>
+                                            <div class="col-2">
+                                            </div>
+                                            <div class="col-lg-4 col-md-12 pt-3">
+                                                <button class="btn btn-primary">saqlash</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Ma'lumot</h5>
+								</div>
+								<div class="card-body">
+									<table id="datatables-clients" class="table table-striped" style="width:100%">
+										<thead>
+											<tr>
+												<th>Telefon nomer</th>
+												<th>Email</th>
+												<th>Logo</th>
+												<th>Instagram link</th>
+												<th>Telegram link</th>
+												<th>Facebook link</th>
+												<th>Youtube link</th>
+												<th>Manzil</th>
+												<th>Haritada joylashuvi</th>
+												<th>Krill Malumot</th>
+												<th>Lotincha Malumot</th>
+												<th>Ruscha malumot</th>
+												<th>Inglizcha malumot</th>
+												<th>O'zgartirish</th>
+												<th>O'chirish</th>
+											</tr>
+										</thead>
+										<tbody>
+                                        {% for i in information %}
+											<tr>
+												<td>{{ i.phone }}</td>
+												<td>{{ i.email }}</td>
+												<td><img src="{{ i.logo.url }}" alt=""></td>
+												<td>{{ i.instagram_link }}</td>
+												<td>{{ i.telegram_link }}</td>
+												<td>{{ i.fb_link }}</td>
+												<td>{{ i.youtube_link }}</td>
+												<td>{{ i.address }}</td>
+												<td>{{ i.map }}</td>
+												<td>{{ i.info }}</td>
+												<td>{{ i.info_uz }}</td>
+												<td>{{ i.info_ru }}</td>
+												<td>{{ i.info_en }}</td>
+												<td><span class="badge badge-warning"><a style="text-decoration: none; color: white" href="{% url 'change-info' i.pk %}">O'zgartirish</a></span></td>
+												<th><span class="badge badge-danger"><a style="text-decoration: none; color: white" href="{% url 'delete-info' i.pk %}">O'chirish</a></span></th>
+											</tr>
+                                        {% endfor %}
+										</tbody>
+									</table>
+                                </div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</main>
+{% endblock content %}
+{% block script %}
+	<script>
+		$(function() {
+			// Datatables clients
+			$("#datatables-clients").DataTable({
+				responsive: true,
+				order: [
+					[1, "asc"]
+				]
+			});
+		});
+	</script>
+{% endblock script %}

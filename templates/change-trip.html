@@ -1,0 +1,87 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+			<main class="content">
+				<div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Safar O'zgartirish</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{% url 'change-trip' trip.id %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Viloyat</label>
+                                                <select name="region" class="form-control" required>
+                                                    <option value="{{ trip.region.id }}" selected>{{ trip.region.name }}</option>
+                                                    {% for i in region %}
+                                                        {% if trip.region.id == i.id %}
+                                                        {% else %}
+                                                        <option value="{{ i.id }}">{{ i.name }}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Krill nomi</label>
+                                                <textarea name="name" id="" cols="40" rows="2" class="form-control" required>{{ trip.name }}</textarea>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Lotincha nomi</label>
+                                                <textarea name="name_uz" id="" cols="40" rows="2" class="form-control" required>{{ trip.name_uz }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Ruscha nomi</label>
+                                                <textarea name="name_ru" id="" cols="40" rows="2" class="form-control" required>{{ trip.name_ru }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Inglizcha nomi</label>
+                                                <textarea name="name_en" id="" cols="40" rows="2" class="form-control" required>{{ trip.name_en }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Video yoki Link</label>
+                                                <select name="video_or_link" class="form-control" id="">
+                                                    <option value="{{ trip.video_or_link }}">{{ trip.get_video_or_link_display }}</option>
+                                                    {% if trip.video_or_link == 1 %}
+                                                    <option value="2">Video</option>
+                                                    {% else %}
+                                                    <option value="1">Link</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Rasm</label>
+                                                <input type="file" name="img" class="form-control-file">
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">video</label>
+                                                <input type="file" name="video" class="form-control-file">
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Link</label>
+                                                {% if trip.link is None %}
+                                                <input type="text" name="link" class="form-control" value="">
+                                                {% else %}
+                                                <input type="text" name="link" class="form-control" value="{{ trip.link }}">
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-lg-3 col-md-12  h-100 d-flex flex-column justify-content-between">
+                                                <label style="color: transparent" for="">Saqlash</label>
+                                                <button class="btn btn-primary">Saqlash</button>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 text-center pt-5">
+                                                <h4>Video yoki linkdan birini toldirishingiz kerak</h4>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</main>
+{% endblock %}

@@ -1,0 +1,124 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+			<main class="content">
+				<div class="container-fluid p-0">
+					<a href="#" class="btn btn-primary float-right mt-n1" data-toggle="modal" data-target="#centeredModalPrimary"><i class="fas fa-plus"></i>   Yangi qo'shish</a>
+                    <div class="modal fade" id="centeredModalPrimary" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Yangi qo'shish</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body m-3">
+                                    <form action="{% url 'add-jamoa' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <label for="">Rasm</label>
+                                        <input type="file" name="img" class="form-control-file" required>
+                                        <label for="">Krill Toliq ism familiyasi</label>
+                                        <input type="text" class="form-control mb-1" value="{{ i.fullname }}" name="fullname">
+                                        <label for="">Lotincha Toliq ism familiyasi</label>
+                                        <input type="text" class="form-control mb-1" value="{{ i.fullname_uz }}" name="fullname_uz">
+                                        <label for="">Ruscha toliq ism familiyasi</label>
+                                        <input type="text" class="form-control mb-1" value="{{ i.fullname_ru }}" name="fullname_ru">
+                                        <label for="">Inglizcha toliq ism familiyasi</label>
+                                        <input type="text" class="form-control mb-1" value="{{ i.fullname_en }}" name="fullname_en">
+                                        <label for="">Krill Lavozim</label>
+                                        <input type="text" class="form-control mb-1" value="{{ i.position }}" name="position">
+                                        <label for="">Lotincha Lavozim</label>
+                                        <input type="text" class="form-control mb-1" value="{{ i.position_uz }}" name="position_uz">
+                                        <label for="">Ruscha lavozim</label>
+                                        <input type="text" class="form-control mb-1" value="{{ i.position_ru }}" name="position_ru">
+                                        <label for="">Inglizcha Lavozim</label>
+                                        <input type="text" class="form-control mb-1" value="{{ i.position_en }}" name="position_en" >
+                                        <div class="modal-footer pt-5" style="border-top: none">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Yopish</button>
+                                            <button type="submit" class="btn btn-primary">Saqlash</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					<h1 class="h3 mb-3">Jamoa</h1>
+
+					<div class="row">
+                        {% for i in team %}
+						<div class="col-12 col-md-6 col-lg-3">
+							<div class="card">
+
+								<img class="card-img-top" src="{{i.img.url}}" alt="Unsplash">
+
+								<div class="card-header px-4 pt-4">
+									<div class="card-actions float-right">
+                                        <div class="dropdown show">
+											<a href="#" data-toggle="dropdown" data-display="static">
+                                              <i class="align-middle" data-feather="more-horizontal"></i>
+                                            </a>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" href="#" data-toggle="modal" data-target="#centeredModalPrimary{{ i.id }}">
+                                                    O'zgartirish
+                                                </a>
+												<a class="dropdown-item" href="{% url 'delete-jamoa' i.pk %}">O'chirish</a>
+											</div>
+										</div>
+                                        <div class="modal fade" id="centeredModalPrimary{{ i.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">O'zgartirish</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body m-3">
+                                                        <form action="{% url 'change-jamoa' i.id %}" method="post" enctype="multipart/form-data">
+                                                            {% csrf_token %}
+                                                            <label for="">Rasm</label>
+                                                            <input type="file" name="img" class="form-control-file">
+                                                            <label for="">Krill Toliq ism familiyasi</label>
+                                                            <input type="text" class="form-control mb-1" value="{{ i.fullname }}" name="fullname" >
+                                                            <label for="">Lotincha Toliq ism familiyasi</label>
+                                                            <input type="text" class="form-control mb-1" value="{{ i.fullname_uz }}" name="fullname_uz" >
+                                                            <label for="">Ruscha toliq ism familiyasi</label>
+                                                            <input type="text" class="form-control mb-1" value="{{ i.fullname_ru }}" name="fullname_ru" >
+                                                            <label for="">Inglizcha toliq ism familiyasi</label>
+                                                            <input type="text" class="form-control mb-1" value="{{ i.fullname_en }}" name="fullname_en" >
+                                                            <label for="">Krill Lavozim</label>
+                                                            <input type="text" class="form-control mb-1" value="{{ i.position }}" name="position" >
+                                                            <label for="">Lotincha Lavozim</label>
+                                                            <input type="text" class="form-control mb-1" value="{{ i.position_uz }}" name="position_uz" >
+                                                            <label for="">Ruscha lavozim</label>
+                                                            <input type="text" class="form-control mb-1" value="{{ i.position_ru }}" name="position_ru" >
+                                                            <label for="">Inglizcha Lavozim</label>
+                                                            <input type="text" class="form-control mb-1" value="{{ i.position_en }}" name="position_en" >
+                                                            <div class="modal-footer pt-5" style="border-top: none">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Yopish</button>
+                                                                <button type="submit" class="btn btn-primary">Saqlash</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
+									<h5 class="card-title mb-0">{{ i.fullname }}</h5>
+									<h5 class="card-title mb-0">{{ i.fullname_uz }}</h5>
+									<h5 class="card-title mb-0">{{ i.fullname_ru }}</h5>
+									<h5 class="card-title mb-0">{{ i.fullname_en }}</h5>
+                                    <hr>
+									<h5 class="card-title mb-0">{{ i.position }}</h5>
+									<h5 class="card-title mb-0">{{ i.position_uz }}</h5>
+									<h5 class="card-title mb-0">{{ i.position_ru }}</h5>
+									<h5 class="card-title mb-0">{{ i.position_en }}</h5>
+								</div>
+							</div>
+						</div>
+                        {% endfor %}
+					</div>
+				</div>
+			</main>
+{% endblock %}

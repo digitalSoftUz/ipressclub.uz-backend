@@ -1,0 +1,82 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+			<main class="content">
+				<div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>About O'zgartirish</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{% url 'change-about' about.id %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Nomi krill</label>
+                                                <textarea name="name" id="" cols="40" rows="3" class="form-control" required>{{ about.name }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Nomi lotin</label>
+                                                <textarea name="name_uz" id="" cols="40" rows="3" class="form-control" required>{{ about.name_uz }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Nomi ruscha</label>
+                                                <textarea name="name_ru" id="" cols="40" rows="3" class="form-control" required>{{ about.name_ru }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Nomi inglizcha</label>
+                                                <textarea name="name_en" id="" cols="40" rows="3" class="form-control" required>{{ about.name_en }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text krill</label>
+                                                <textarea name="text" id="" cols="40" rows="3" class="form-control" required>{{ about.text }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text lotincha</label>
+                                                <textarea name="text_uz" id="" cols="40" rows="3" class="form-control" required>{{ about.text_uz }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text ruscha</label>
+                                                <textarea name="text_ru" id="" cols="40" rows="3" class="form-control" required>{{ about.text_ru }}</textarea>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text inglizcha</label>
+                                                <textarea name="text_en" id="" cols="40" rows="3" class="form-control" required>{{ about.text_en }}</textarea>
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Qoshimcha text krill</label>
+                                                <textarea name="text1" id="" cols="40" rows="3" class="form-control" required>{{ about.text1 }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Qoshimcha text lotincha</label>
+                                                <textarea name="text1_uz" id="" cols="40" rows="3" class="form-control" required>{{ about.text1_uz }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Qoshimcha text ruscha</label>
+                                                <textarea name="text1_ru" id="" cols="40" rows="3" class="form-control" required>{{ about.text1_ru }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Qoshimcha text inglizcha</label>
+                                                <textarea name="text1_en" id="" cols="40" rows="3" class="form-control" required>{{ about.text1_en }}</textarea>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Rasm</label>
+                                                <input type="file" name="img" class="form-control-file">
+                                            </div>
+                                            <div class="col-lg-3 col-md-12 h-100 d-flex flex-column justify-content-between">
+                                                <label style="color: transparent" for="" class=""> mjk </label>
+                                                <button type="submit" class="btn btn-primary w-50">Saqlash</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</main>
+{% endblock %}

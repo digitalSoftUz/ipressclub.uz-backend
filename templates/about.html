@@ -1,0 +1,113 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+			<main class="content">
+				<div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h1>About</h1>
+                                    <form action="{% url 'add-about' %}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Krill nomi</label>
+                                                <input type="text" class="form-control" name="name" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Lotincha nomi</label>
+                                                <input type="text" class="form-control" name="name_uz" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Ruscha nomi</label>
+                                                <input type="text" class="form-control" name="name_ru" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Inglizcha nomi</label>
+                                                <input type="text" class="form-control" name="name_en" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text krill</label>
+                                                <input type="text" class="form-control" name="text" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text lotin</label>
+                                                <input type="text" class="form-control" name="text_uz" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text ruscha</label>
+                                                <input type="text" class="form-control" name="text_ru" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Text inglizcha</label>
+                                                <input type="text" class="form-control" name="text_en" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Rasm</label>
+                                                <input type="file" class="form-control-file" name="img" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Qoshimcha text</label>
+                                                <input type="text" class="form-control" name="text1" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Qoshimcha text lotincha</label>
+                                                <input type="text" class="form-control" name="text1_uz" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Qoshimcha text ruscha</label>
+                                                <input type="text" class="form-control" name="text1_ru" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12">
+                                                <label for="">Qoshimcha text inglizcha</label>
+                                                <input type="text" class="form-control" name="text1_en" required>
+                                            </div>
+                                            <div class="col-lg-3 col-md-12  h-100 d-flex flex-column justify-content-between">
+                                                <label style="color: transparent" for="">Saqlash</label>
+                                                <button class="btn btn-primary">Saqlash</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for i in info %}
+                        <div class="col-12 col-md-6 col-lg-4 pt-1">
+                            <div class="card">
+                                {% if i.img %}
+                                <img class="card-img-top" src="{{i.img.url}}" alt="News photo">
+                                {% else %}
+                                <img class="card-img-top" src="" alt="About photo">
+                                {% endif %}
+                                <div class="card-header">
+                                    <h5 class="card-title mb-1">{{ i.name}}</h5>
+                                    <h5 class="card-title mb-1">{{ i.name_uz}}</h5>
+                                    <h5 class="card-title mb-1">{{ i.name_ru}}</h5>
+                                    <h5 class="card-title mb-1">{{ i.name_en}}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text mb-1">{{ i.text |truncatechars:100  }}</p>
+                                    <p class="card-text mb-1">{{ i.text_uz |truncatechars:100  }}</p>
+                                    <p class="card-text mb-1">{{ i.text_ru |truncatechars:100 }}</p>
+                                    <p class="card-text mb-1">{{ i.text_en |truncatechars:100 }}</p>
+                                    <hr>
+                                    <p>{{ i.text1|truncatechars:100 }}</p>
+                                    <p>{{ i.text1_uz|truncatechars:100 }}</p>
+                                    <p>{{ i.text1_ru|truncatechars:100 }}</p>
+                                    <p>{{ i.text1_en|truncatechars:100 }}</p>
+                                    <div class="text-center">
+                                        <a href="{% url 'single-about' i.id %}" class="btn btn-bitbucket">Ko'proq ko'rish</a>
+                                        <a href="{% url 'change-about' i.id %}" class="btn btn-primary">O'zgartirish</a>
+                                        <a href="{% url 'delete-about' i.id %}" class="btn btn-danger">O'chirish</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+				</div>
+			</main>
+{% endblock %}

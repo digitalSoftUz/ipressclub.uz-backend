@@ -1,0 +1,188 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block style %}
+    <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 25px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 10px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 40px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+</style>
+{% endblock style %}
+			<main class="content">
+				<div class="container-fluid p-0">
+                    <div class="row">
+                        <button data-toggle="modal" data-target="#centeredModalPrimaryadd" class="btn btn-primary"><i class="fas fa-plus"></i>   Yangi qo'shish</button>
+                    </div>
+                    <div class="row mt-3">
+                        {% for i in video %}
+                            <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        {% if i.video_or_url == 1 %}
+                                        <video width="100%" src="{{ i.video.url }}" controls>
+                                        </video>
+                                        {% else %}
+                                            <iframe width="100%" height="295px" src="{{ i.video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        {% endif %}
+                                        <div class="text-center pt-2">
+                                            <a href="#" data-toggle="modal" data-target="#centeredModalPrimary{{ i.id }}" class="btn btn-warning">O'zgartirish</a>
+                                            <a href="{% url 'delete-video' i.id %}" class="btn btn-danger">O'chirish</a>
+                                        </div>
+                                        <div class="modal fade" id="centeredModalPrimary{{ i.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">O'zgartirish</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body m-3">
+                                                        <form action="{% url 'change-video' i.id %}" method="post" enctype="multipart/form-data">
+                                                            {% csrf_token %}
+                                                            <label for="">Video Posteri</label>
+                                                            <input type="file" name="img" class="form-control-file pb-2">
+                                                            <label for="">Video yoki Linkni tanlang</label>
+                                                            <select name="type" id="" class="form-control" required>
+                                                                {% if i.video_or_url == 1 %}
+                                                                <option value="1" selected>Video</option>
+                                                                <option value="2">Link</option>
+                                                                {% else %}
+                                                                <option value="1">Video</option>
+                                                                <option value="2" selected>Link</option>
+                                                                {% endif %}
+                                                            </select>
+                                                            <label for="" class="pt-3">Video yuklash uchun</label>
+                                                            <input type="file" name="video" class="form-control-file mt-1">
+                                                            <label for="" class="pt-3">Video manzilini yuklash</label>
+                                                            {% if i.video_or_url == 2 %}
+                                                            <input type="text" name="link" value="{{ i.video_url }}" class="form-control mt-1">
+                                                            {% else %}
+                                                            <input type="text" name="link" class="form-control mt-1">
+                                                            {% endif %}
+                                                            <div class="modal-footer pt-5" style="border-top: none">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Yopish</button>
+                                                                <button type="submit" class="btn btn-primary">Saqlash</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+				</div>
+                <div class="modal fade" id="centeredModalPrimaryadd" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Yangi qoshish</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body m-3">
+                                <form action="{% url 'add-video' %}" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <label for="">Video uchun poster tanlang</label>
+                                    <input type="file" name="img" class="form-control-file mt-1" required>
+                                    <label for="" class="pt-2">Video yoki Linkni tanlang</label>
+                                    <select name="type" id="" class="form-control" required>
+                                        <option value="1">Video</option>
+                                        <option value="2">Link</option>
+                                    </select>
+                                    <label for="" class="pt-3">Video yuklash uchun</label>
+                                    <input type="file" name="video" class="form-control-file mt-1">
+                                    <label for="" class="pt-3">Video manzilini yuklash</label>
+                                    <input type="text" name="link" class="form-control mt-1">
+                                    <div class="modal-footer pt-5" style="border-top: none">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Yopish</button>
+                                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</main>
+{% endblock %}
+{% block script %}
+    <script>
+    let csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    let ids = document.getElementById('streaming').value
+    $("#switch").on('change', function(e){
+        $.ajax({
+          type: "POST",
+          headers:{
+            "X-CSRFToken": csrftoken
+          },
+          url: "{% url "change-status-streaming" %}",
+          data: {
+            "ids": ids // from form
+          },
+          success: function () {
+
+          }
+        });
+    });
+    </script>
+{% endblock %}

@@ -1,0 +1,453 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Press Club</title>
+
+	<link rel="preconnect" href="//fonts.gstatic.com/" crossorigin="">
+
+	<!-- PICK ONE OF THE STYLES BELOW -->
+	<link href="{% static 'css/classic.css' %}" rel="stylesheet">
+	<!-- <link href="css/corporate.css" rel="stylesheet"> -->
+	<!-- <link href="css/modern.css" rel="stylesheet"> -->
+
+	<!-- BEGIN SETTINGS -->
+	<!-- You can remove this after picking a style -->
+	<style>
+		body {
+			opacity: 0;
+		}
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+	</style>
+{#	<script src="js\settings.js"></script>#}
+	<!-- END SETTINGS -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-120946860-6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120946860-6');
+</script>
+</head>
+
+<body>
+	<div class="wrapper ">
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-content ">
+				<a class="sidebar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'logo.png' %}" alt="">
+                </a>
+				<ul class="sidebar-nav">
+                    {% if request.path == '/home/' %}
+					<li class="sidebar-item active">
+						<a href="{% url 'home' %}" class="sidebar-link">
+                          <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+                        <a href="{% url 'home' %}" class="sidebar-link">
+                          <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == '/streaming/' %}
+					<li class="sidebar-item active">
+						<a href="{% url 'streaming' %}" class="sidebar-link">
+                          <i class="align-middle" data-feather="tv"></i> <span class="align-middle">Online Translatsiya</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+                        <a href="{% url 'streaming' %}" class="sidebar-link">
+                          <i class="align-middle" data-feather="tv"></i> <span class="align-middle">Online Translatsiya</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == '/information/' %}
+					<li class="sidebar-item active">
+						<a href="{% url 'information' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Informatsiya</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+						<a href="{% url 'information' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Informatsiya</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == '/partner/' %}
+					<li class="sidebar-item active">
+						<a href="{% url 'partner' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="users"></i> <span class="align-middle">Hamkorlar</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+						<a href="{% url 'partner' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="users"></i> <span class="align-middle">Hamkorlar</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == '/team/' %}
+					<li class="sidebar-item active">
+						<a href="{% url 'team' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="monitor"></i> <span class="align-middle">Kengash</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+						<a href="{% url 'team' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="monitor"></i> <span class="align-middle">Kengash</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == '/jamoa/' %}
+					<li class="sidebar-item active">
+						<a href="{% url 'jamoa' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="monitor"></i> <span class="align-middle">Jamoa</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+						<a href="{% url 'jamoa' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="monitor"></i> <span class="align-middle">Jamoa</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == "/news/" %}
+					<li class="sidebar-item active">
+						<a href="{% url 'news' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Yangiliklar</span>
+                        </a>
+					</li>
+                    {% else %}
+					<li class="sidebar-item">
+						<a href="{% url 'news' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Yangiliklar</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == "/projects/" %}
+					<li class="sidebar-item active">
+						<a href="{% url 'projects' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Loyihalar</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+						<a href="{% url 'projects' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Loyihalar</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == "/photos/" %}
+					<li class="sidebar-item active">
+						<a href="{% url 'photos' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Фотоотчёт</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+						<a href="{% url 'photos' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Фотоотчёт</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == "/videos/" %}
+					<li class="sidebar-item active">
+						<a href="{% url 'videos' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Bидео отчёт</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+						<a href="{% url 'videos' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Bидео отчёт</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == "/trips/" %}
+                    <li class="sidebar-item active">
+						<a href="{% url 'trips' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="pie-chart"></i> <span class="align-middle">Sayohatlar</span>
+                        </a>
+					</li>
+                    {% else %}
+                    <li class="sidebar-item">
+						<a href="{% url 'trips' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="pie-chart"></i> <span class="align-middle">Sayohatlar</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == "/about/" %}
+					<li class="sidebar-item active">
+						<a href="{% url 'about' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="pie-chart"></i> <span class="align-middle">XPK haqida</span>
+                        </a>
+					</li>
+                    {% else %}
+                	<li class="sidebar-item">
+						<a href="{% url 'about' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="pie-chart"></i> <span class="align-middle">XPK haqida</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    {% if request.path == "/setting/" %}
+					<li class="sidebar-item active">
+						<a href="{% url 'setting' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profil</span>
+                        </a>
+					</li>
+                    {% else %}
+                	<li class="sidebar-item">
+						<a href="{% url 'setting' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profil</span>
+                        </a>
+					</li>
+                    {% endif %}
+                    <li class="sidebar-item">
+						<a href="{% url 'logout' %}" class="sidebar-link collapsed">
+                          <i class="align-middle" data-feather="lock"></i> <span class="align-middle">Chiqish</span>
+                        </a>
+					</li>
+				</ul>
+
+			</div>
+		</nav>
+
+		<div class="main d-flex flex-column">
+			<nav class="navbar navbar-expand navbar-light bg-white">
+				<a class="sidebar-toggle d-flex mr-2">
+          <i class="hamburger align-self-center"></i>
+        </a>
+
+{#				<form class="form-inline d-none d-sm-inline-block">#}
+{#					<input class="form-control form-control-no-border mr-sm-2" type="text" placeholder="Search projects..." aria-label="Search">#}
+{#				</form>#}
+
+				<div class="navbar-collapse collapse">
+				</div>
+			</nav>
+
+
+{% block content %}
+{% endblock content %}
+
+			<footer style="margin-top: auto !important;" class="footer mb-0">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-left">
+{#							<ul class="list-inline">#}
+{#								<li class="list-inline-item">#}
+{#									<a class="text-muted" href="#">Support</a>#}
+{#								</li>#}
+{#								<li class="list-inline-item">#}
+{#									<a class="text-muted" href="#">Help Center</a>#}
+{#								</li>#}
+{#								<li class="list-inline-item">#}
+{#									<a class="text-muted" href="#">Privacy</a>#}
+{#								</li>#}
+{#								<li class="list-inline-item">#}
+{#									<a class="text-muted" href="#">Terms of Service</a>#}
+{#								</li>#}
+{#							</ul>#}
+						</div>
+						<div class="col-6 text-right">
+							<p class="mb-0">
+{#								&copy; 2019 - <a href="index.html" class="text-muted">AppStack</a>#}
+							</p>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	<script src="{% static 'js\app.js' %}"></script>
+
+	<script>
+		$(function() {
+			// Bar chart
+			new Chart(document.getElementById("chartjs-dashboard-bar"), {
+				type: "bar",
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "Last year",
+						backgroundColor: window.theme.primary,
+						borderColor: window.theme.primary,
+						hoverBackgroundColor: window.theme.primary,
+						hoverBorderColor: window.theme.primary,
+						data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79]
+					}, {
+						label: "This year",
+						backgroundColor: "#E8EAED",
+						borderColor: "#E8EAED",
+						hoverBackgroundColor: "#E8EAED",
+						hoverBorderColor: "#E8EAED",
+						data: [69, 66, 24, 48, 52, 51, 44, 53, 62, 79, 51, 68]
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					scales: {
+						yAxes: [{
+							gridLines: {
+								display: false
+							},
+							stacked: false,
+							ticks: {
+								stepSize: 20
+							}
+						}],
+						xAxes: [{
+							barPercentage: .75,
+							categoryPercentage: .5,
+							stacked: false,
+							gridLines: {
+								color: "transparent"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		$(function() {
+			$("#datetimepicker-dashboard").datetimepicker({
+				inline: true,
+				sideBySide: false,
+				format: "L"
+			});
+		});
+	</script>
+	<script>
+		$(function() {
+			// Line chart
+			new Chart(document.getElementById("chartjs-dashboard-line"), {
+				type: "line",
+				data: {
+					labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets: [{
+						label: "Sales ($)",
+						fill: true,
+						backgroundColor: "transparent",
+						borderColor: window.theme.primary,
+						data: [2015, 1465, 1487, 1796, 1387, 2123, 2866, 2548, 3902, 4938, 3917, 4927]
+					}, {
+						label: "Orders",
+						fill: true,
+						backgroundColor: "transparent",
+						borderColor: window.theme.tertiary,
+						borderDash: [4, 4],
+						data: [928, 734, 626, 893, 921, 1202, 1396, 1232, 1524, 2102, 1506, 1887]
+					}]
+				},
+				options: {
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					tooltips: {
+						intersect: false
+					},
+					hover: {
+						intersect: true
+					},
+					plugins: {
+						filler: {
+							propagate: false
+						}
+					},
+					scales: {
+						xAxes: [{
+							reverse: true,
+							gridLines: {
+								color: "rgba(0,0,0,0.05)"
+							}
+						}],
+						yAxes: [{
+							ticks: {
+								stepSize: 500
+							},
+							display: true,
+							borderDash: [5, 5],
+							gridLines: {
+								color: "rgba(0,0,0,0)",
+								fontColor: "#fff"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		$(function() {
+			// Pie chart
+			new Chart(document.getElementById("chartjs-dashboard-pie"), {
+				type: "pie",
+				data: {
+					labels: ["Direct", "Affiliate", "E-mail", "Other"],
+					datasets: [{
+						data: [2602, 1253, 541, 1465],
+						backgroundColor: [
+							window.theme.primary,
+							window.theme.warning,
+							window.theme.danger,
+							"#E8EAED"
+						],
+						borderColor: "transparent"
+					}]
+				},
+				options: {
+					responsive: !window.MSInputMethodContext,
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					}
+				}
+			});
+		});
+	</script>
+	<script>
+		$(function() {
+			$("#datatables-dashboard-projects").DataTable({
+				pageLength: 6,
+				lengthChange: false,
+				bFilter: false,
+				autoWidth: false
+			});
+		});
+	</script>
+
+    {% block script %}
+    {% endblock script %}
+
+</body>
+
+</html>
